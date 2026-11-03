@@ -45,13 +45,13 @@ The economics of this process are given by the following equations:
 Using these equations, the optimal initial conditions are selected by evaluating the calculated space-time profit and yield. The idxmax function finds the combination of initial conditions that produces the highest values. The 95% prediction intervals are found using 2.5th and 97.5th percentiles of the simulated results.
 ### Final Model Choice
 The final model choice is a second-order NVAR polynomial model. This model is fairly simple, with a relatively small RMSE. The rankings of the mean score and standard deviations are shown in Tables 1 and 2 for the VAR and NVAR assessments, respectively. 
-#### Table 1: Vector Autoregression Score Rankings
+**Table 1: Vector Autoregression Score Rankings**
 |p |N simulations |RMSE (mean) [mg/L] |RMSE (SD) [mg/L]   |
 |-------------|---|-------------------|-------------------|
 |1            |500|0.16507475875526342|0.10327739371904004|
 |2            |500|0.15428338265564476|0.09033795210389742|
 |3            |500|0.1605487298622014 |0.08082950485026197|
-#### Table 2: Non-Linear Vector Autoregression Score Rankings[1^]
+**Table 2: Non-Linear Vector Autoregression Score Rankings[1^]**
 |Model|p  |N simulations|RMSE (mean) [mg/L] |RMSE (SD) [mg/L]   |
 |-----|---|-------------|-------------------|-------------------|
 |poly |1  |5            |0.17343247918114368|0.09351400485922225|
@@ -67,39 +67,39 @@ The final model choice is a second-order NVAR polynomial model. This model is fa
 
 [1^]Runs of 5 were used to reduce the run time, however for more accurate results, adjusting the number of simulations to 500-1000 is recommended. 
 
-As seen, the best choices for each model type are VAR, p=2, and NVAR with a polynomial model of degree 2, p=2. For VAR, decreasing the complexity does not provide a significant benefit, as the model is simple as is. Furthermore, the error increases. For NVAR, polynomial and knn models provided similar results. Increasing polynomial complexity and nearest neighbours resulted in an increased error. Therefore, for simplicity, the NVAR(2) polynomial model with degree 2 was selected. The forecasted curves for the VAR and NVAR models are shown in Figures 1-9. 
+As seen, the best choices for each model type are VAR, p=2, and NVAR with a polynomial model of degree 2, p=3. Because the additional lag value does not significantly reduce the RMSE, a lag order of 2 can also be chosen so as not to overcomplicate the model. For NVAR, polynomial and knn models provided similar results. Increasing polynomial complexity and nearest neighbours resulted in an increased error. Therefore, for simplicity, the NVAR(3) polynomial model with degree 2 was selected. The forecasted curves for the VAR and NVAR models are shown in Figures 1-9. 
  
 <img width="1125" height="750" alt="image" src="https://github.com/user-attachments/assets/9cda8701-efaa-4c8b-b34c-96267a879896" />
-#### Figure 1: Forecasted VAR(1).
+*Figure 1: Forecasted VAR(1).*
 <img width="1125" height="750" alt="image" src="https://github.com/user-attachments/assets/6465a5ee-11da-46f0-a4a1-a96f30dc8dae" />
-#### Figure 2: Forecasted VAR(2).
+*Figure 2: Forecasted VAR(2).*
 <img width="1125" height="750" alt="image" src="https://github.com/user-attachments/assets/47fc3464-b373-4d2f-860e-f1cc90344655" />
-#### Figure 3: Forecasted VAR(3).
+*Figure 3: Forecasted VAR(3).*
 For simplicity and comparability, only runs up to p=3 were included for non-linear VAR models. 
 
 <img width="5400" height="3600" alt="image" src="https://github.com/user-attachments/assets/429a7dab-72aa-4a88-b8f7-45cae84d59c1" />
 
-#### Figure 4: Forecasted NVAR, polynomial model, p=1. 
+*Figure 4: Forecasted NVAR, polynomial model, p=1.*
 <img width="5400" height="3600" alt="image" src="https://github.com/user-attachments/assets/7bb2d229-6c19-4280-924f-55d0852c8c0e" />
 
 
-#### Figure 5: Forecasted NVAR, polynomial model, p=2. 
+*Figure 5: Forecasted NVAR, polynomial model, p=2.* 
 <img width="5400" height="3600" alt="image" src="https://github.com/user-attachments/assets/36a2fa99-b6aa-436c-acab-c53df2b24b1f" />
 
 
-#### Figure 6: Forecasted NVAR, polynomial model, p=3. 
+*Figure 6: Forecasted NVAR, polynomial model, p=3.*
 <img width="5400" height="3600" alt="image" src="https://github.com/user-attachments/assets/41e06bea-ac0e-4f8f-beca-d338be0e618c" />
 
-#### Figure 7: Forecasted NVAR, k-nearest neighbours, p=1.
+*Figure 7: Forecasted NVAR, k-nearest neighbours, p=1.*
 <img width="5400" height="3600" alt="image" src="https://github.com/user-attachments/assets/6530bef9-8d3c-4718-92c5-6c71e6fff1b3" />
 
 
-#### Figure 8: Forecasted NVAR, k-nearest neighbours, p=2. 
+*Figure 8: Forecasted NVAR, k-nearest neighbours, p=2.* 
 <img width="5400" height="3600" alt="image" src="https://github.com/user-attachments/assets/79f103fb-0405-4389-baca-9ce322011ed4" />
 
 
 
-#### Figure 9: Forecasted NVAR, k-nearest neighbours, p=3. 
+*Figure 9: Forecasted NVAR, k-nearest neighbours, p=3.*
 
 Polynomial models are simpler and easier to interpret compared to non-parametric models—seeing as the second-order polynomial regression provided a slightly lower root-mean-square error, it is the clear choice for our predictive model.
 Another evaluation metric is the white noise of each run. White noise is the difference between predicted and actual values. When plotted, white noise should have a mean close to zero, appear randomly distributed around zero, and show no systematic trends over time. This is important because white noise is sampled directly from the residuals; therefore, it reflects the actual noise within the modelled processes. The further away the white noise is from this criterion, the less representative the simulation becomes. Thus, our final model selection is heavily dependent on white noise. 
@@ -120,7 +120,7 @@ Another limitation is that only 30 batches were used; if all datasets were used,
 
 ### Optimizations and Input Feature Impacts
 The optimal results for the space-time profit and yield alongside the 95% prediction intervals are given in Table 1 below. 
-#### Table 3: Optimal Space-Time Profit and Yield
+**Table 3: Optimal Space-Time Profit and Yield**
 |Objective|Glucose [mM]|Glutamine [mM]|VCD [cells/mL]|Harvest Time [d]  |Cell Culture Cost [$/L]|Cell Culture Value Median [$/L]|Cell Culture Value Lower 95% [$/L]|Cell Culture Value Upper 95% [$/L]|Space-Time Profit Median [$/L/d]|Space-Time Profit Lower 95% [$/L/d]|Space-Time Profit Upper 95% [$/L/d]|Space-Time Yield Median [mg/L/d]|Space-Time Yield Lower 95% [mg/L/d]|Space-Time Yield Upper 95% [mg/L/d]|
 |---------|------------|--------------|--------------|------------------|-----------------------|-------------------------------|----------------------------------|----------------------------------|--------------------------------|-----------------------------------|-----------------------------------|--------------------------------|-----------------------------------|-----------------------------------|
 |profit   |20.0        |1.0           |200000.0      |2.6666666666666665|320.0                  |605.1694501837226              |444.913146180798                  |775.1793889255417                 |77.77348641374255               |34.06722168567217                  |124.13983334332958                 |0.16504621368646982             |0.12133994895839946                |0.21141256061605684                |
