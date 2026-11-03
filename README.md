@@ -51,6 +51,7 @@ The final model choice is a second-order NVAR polynomial model. This model is fa
 |1            |500|0.16507475875526342|0.10327739371904004|
 |2            |500|0.15428338265564476|0.09033795210389742|
 |3            |500|0.1605487298622014 |0.08082950485026197|
+
 **Table 2: Non-Linear Vector Autoregression Score Rankings[1^]**
 |Model|p  |N simulations|RMSE (mean) [mg/L] |RMSE (SD) [mg/L]   |
 |-----|---|-------------|-------------------|-------------------|
