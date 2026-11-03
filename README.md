@@ -69,24 +69,30 @@ The final model choice is a second-order NVAR polynomial model. This model is fa
 
 As seen, the best choices for each model type are VAR, p=2, and NVAR with a polynomial model of degree 2, p=2. For VAR, decreasing the complexity does not provide a significant benefit, as the model is simple as is. Furthermore, the error increases. For NVAR, polynomial and knn models provided similar results. Increasing polynomial complexity and nearest neighbours resulted in an increased error. Therefore, for simplicity, the NVAR(2) polynomial model with degree 2 was selected. The forecasted curves for the VAR and NVAR models are shown in Figures 1-9. 
  
-![img_1.png](img_1.png)
+<img width="1125" height="750" alt="image" src="https://github.com/user-attachments/assets/9cda8701-efaa-4c8b-b34c-96267a879896" />
 #### Figure 1: Forecasted VAR(1).
-![img_2.png](img_2.png)
+<img width="1125" height="750" alt="image" src="https://github.com/user-attachments/assets/6465a5ee-11da-46f0-a4a1-a96f30dc8dae" />
 #### Figure 2: Forecasted VAR(2).
-![img_3.png](img_3.png)
+<img width="1125" height="750" alt="image" src="https://github.com/user-attachments/assets/47fc3464-b373-4d2f-860e-f1cc90344655" />
 #### Figure 3: Forecasted VAR(3).
 For simplicity and comparability, only runs up to p=3 were included for non-linear VAR models. 
-![img_6.png](img_6.png)
+
+<img width="1699" height="1427" alt="image" src="https://github.com/user-attachments/assets/ff5250db-aab0-45b6-9b82-8fa569738284" />
 #### Figure 4: Forecasted NVAR, polynomial model, p=1. 
-![img_7.png](img_7.png)
+<img width="1699" height="1427" alt="image" src="https://github.com/user-attachments/assets/af1fb253-2855-43e7-815d-e2d03792d098" />
+
 #### Figure 5: Forecasted NVAR, polynomial model, p=2. 
-![img_8.png](img_8.png)
+<img width="1699" height="1427" alt="image" src="https://github.com/user-attachments/assets/3f85171c-df77-4c08-ae4f-61b2659749a7" />
+
 #### Figure 6: Forecasted NVAR, polynomial model, p=3. 
-![img_9.png](img_9.png)
+<img width="1699" height="1427" alt="image" src="https://github.com/user-attachments/assets/3df9645a-e617-4c58-b366-882c278c709e" />
+
 #### Figure 7: Forecasted NVAR, k-nearest neighbours, p=1.
-![img_10.png](img_10.png)
+<img width="1699" height="1427" alt="image" src="https://github.com/user-attachments/assets/e56ad8a6-fb0f-4c4e-a99f-55b0447aaedd" />
+
 #### Figure 8: Forecasted NVAR, k-nearest neighbours, p=2. 
-![img_11.png](img_11.png)
+<img width="1699" height="1427" alt="image" src="https://github.com/user-attachments/assets/f913d825-c1cb-4118-9ecb-5b15ff3e4418" />
+
 #### Figure 9: Forecasted NVAR, k-nearest neighbours, p=3. 
 
 Polynomial models are simpler and easier to interpret compared to non-parametric models—seeing as the second-order polynomial regression provided a slightly lower root-mean-square error, it is the clear choice for our predictive model.
@@ -94,9 +100,11 @@ Another evaluation metric is the white noise of each run. White noise is the dif
 The plots for white noise are shown in Figures 10 and 11. 
  
 
-![img_4.png](img_4.png)
+<img width="1125" height="612" alt="image" src="https://github.com/user-attachments/assets/01ed6ee3-6dce-43bd-8894-f606783e2a7b" />
+
 #### Figure 10: Plotted white noise, non-linear vector autoregression. From left to right, top to bottom, polynomial degrees 1-5, respectively. 
-![img_5.png](img_5.png) 
+<img width="1121" height="650" alt="image" src="https://github.com/user-attachments/assets/7da36735-62a0-43ee-99ae-78aa34651220" />
+
 #### Figure 11: Plotted white noise, non-linear vector autoregression. From left to right, top to bottom, k-Nearest Neighbours, with Neighbours 2-5, respectively. 
 
 ### Advantages and Limitations
