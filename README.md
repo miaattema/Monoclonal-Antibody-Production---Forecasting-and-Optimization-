@@ -77,21 +77,27 @@ As seen, the best choices for each model type are VAR, p=2, and NVAR with a poly
 #### Figure 3: Forecasted VAR(3).
 For simplicity and comparability, only runs up to p=3 were included for non-linear VAR models. 
 
-<img width="1699" height="1427" alt="image" src="https://github.com/user-attachments/assets/ff5250db-aab0-45b6-9b82-8fa569738284" />
+<img width="5400" height="3600" alt="image" src="https://github.com/user-attachments/assets/429a7dab-72aa-4a88-b8f7-45cae84d59c1" />
+
 #### Figure 4: Forecasted NVAR, polynomial model, p=1. 
-<img width="1699" height="1427" alt="image" src="https://github.com/user-attachments/assets/af1fb253-2855-43e7-815d-e2d03792d098" />
+<img width="5400" height="3600" alt="image" src="https://github.com/user-attachments/assets/7bb2d229-6c19-4280-924f-55d0852c8c0e" />
+
 
 #### Figure 5: Forecasted NVAR, polynomial model, p=2. 
-<img width="1699" height="1427" alt="image" src="https://github.com/user-attachments/assets/3f85171c-df77-4c08-ae4f-61b2659749a7" />
+<img width="5400" height="3600" alt="image" src="https://github.com/user-attachments/assets/36a2fa99-b6aa-436c-acab-c53df2b24b1f" />
+
 
 #### Figure 6: Forecasted NVAR, polynomial model, p=3. 
-<img width="1699" height="1427" alt="image" src="https://github.com/user-attachments/assets/3df9645a-e617-4c58-b366-882c278c709e" />
+<img width="5400" height="3600" alt="image" src="https://github.com/user-attachments/assets/41e06bea-ac0e-4f8f-beca-d338be0e618c" />
 
 #### Figure 7: Forecasted NVAR, k-nearest neighbours, p=1.
-<img width="1699" height="1427" alt="image" src="https://github.com/user-attachments/assets/e56ad8a6-fb0f-4c4e-a99f-55b0447aaedd" />
+<img width="5400" height="3600" alt="image" src="https://github.com/user-attachments/assets/6530bef9-8d3c-4718-92c5-6c71e6fff1b3" />
+
 
 #### Figure 8: Forecasted NVAR, k-nearest neighbours, p=2. 
-<img width="1699" height="1427" alt="image" src="https://github.com/user-attachments/assets/f913d825-c1cb-4118-9ecb-5b15ff3e4418" />
+<img width="5400" height="3600" alt="image" src="https://github.com/user-attachments/assets/79f103fb-0405-4389-baca-9ce322011ed4" />
+
+
 
 #### Figure 9: Forecasted NVAR, k-nearest neighbours, p=3. 
 
