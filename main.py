@@ -264,7 +264,7 @@ cols_export = ["p", "N simulations", f"RMSE (mean) [{units}]", f"RMSE (SD) [{uni
 df_export = pd.DataFrame.from_records(records, columns=cols_export)
 df_export.to_csv(os.path.join("tables", "table_02_VAR_summary.csv"), index=False)
 
-# #VAR non-linear
+#VAR non-linear
 
 # Define training parameters
 n_simulations = 500
@@ -720,7 +720,7 @@ for model_type in model_types:
 
 def simulate_trajectories(initial_glucose, initial_glutamine, initial_vcd,
                           model, residuals, p, features, n_simulations,
-                          rng, n_steps):
+                          rng, n_steps, a_min, a_max):
 
     expected_features = [
         "Glucose [mM]", "Glutamine [mM]", "Lactate [mM]",
@@ -746,10 +746,25 @@ def simulate_trajectories(initial_glucose, initial_glutamine, initial_vcd,
             x_lag = np.concatenate(history[-p:][::-1]).reshape(1, -1)
             baseline = model.predict(x_lag)[0]
 
-            # Sample one residual independently for each process variable.
-            noise_indices = rng.integers(0, residuals.shape[0], size=residuals.shape[1])
-            white_noise = residuals[noise_indices, np.arange(residuals.shape[1])]
-            next_state = np.clip(baseline + white_noise, a_min=0, a_max=None)
+            # Keep baseline predictions within the training data range
+            baseline = np.clip(baseline, a_min=a_min, a_max=a_max)
+
+            # Sample one residual independently for each process variable
+            noise_indices = rng.integers(
+                0, residuals.shape[0],
+                size=residuals.shape[1]
+            )
+
+            white_noise = residuals[
+                noise_indices, np.arange(residuals.shape[1])
+            ]
+
+            # Add noise and constrain predictions to the training data range
+            next_state = np.clip(
+                baseline + white_noise,
+                a_min=np.maximum(a_min, 0),
+                a_max=a_max
+            )
 
             forecasts[simulation_id, step, :] = next_state
             history.append(next_state)
@@ -762,7 +777,7 @@ def simulate_trajectories(initial_glucose, initial_glutamine, initial_vcd,
 # ======================
 
 # Select the final model
-model_type = "var"  # Options: "var", "poly", "knn"
+model_type = "poly"
 
 # Select the optimal number of lags
 p = 3
@@ -780,7 +795,9 @@ x_lag_all, x_cur_all, t_cur_all, b_cur_all = generate_x_lag_cur_var(
     df=df,
     features=features
 )
-
+# Determine the minimum and maximum training values for each variable
+a_min = np.min(x_cur_all, axis=0)
+a_max = np.max(x_cur_all, axis=0)
 # Create the selected model
 if model_type == "var":
 
@@ -824,7 +841,7 @@ glutamine_levels = np.arange(1, 8, 1)
 vcd_levels = np.arange(200000, 1400001, 200000)
 
 # Forecasting parameters
-n_simulations_opt = 5
+n_simulations_opt = 500
 prediction_interval = 0.95
 alpha = 1 - prediction_interval
 
@@ -872,9 +889,11 @@ for initial_glucose in glucose_levels:
                 residuals=x_cur_all_res,
                 p=p,
                 features=features,
-                n_simulations=n_simulations_opt,
+                n_simulations=500,
                 rng=rng,
-                n_steps=n_steps
+                n_steps=n_steps,
+                a_min=a_min,
+                a_max=a_max
             )
 
             # Extract mAb predictions
@@ -970,9 +989,11 @@ def summarize_optimum(row, objective):
         residuals=x_cur_all_res,
         p=p,
         features=features,
-        n_simulations=1000,
+        n_simulations=500,
         rng=rng,
-        n_steps=n_steps
+        n_steps=n_steps,
+        a_min=a_min,
+        a_max=a_max
     )
 
     # Find the harvest time index
