@@ -64,6 +64,7 @@ The final model choice is a second-order NVAR polynomial model. This model is fa
 |knn  |3  |5            |0.19720989249927728|0.11159304684587233|
 |knn  |4  |5            |0.22515962583684798|0.12382236862312876|
 |knn  |5  |5            |0.21626718079818968|0.10080063725189164|
+
 [1^]Runs of 5 were used to reduce the run time, however for more accurate results, adjusting the number of simulations to 500-1000 is recommended. 
 
 As seen, the best choices for each model type are VAR, p=2, and NVAR with a polynomial model of degree 2, p=2. For VAR, decreasing the complexity does not provide a significant benefit, as the model is simple as is. Furthermore, the error increases. For NVAR, polynomial and knn models provided similar results. Increasing polynomial complexity and nearest neighbours resulted in an increased error. Therefore, for simplicity, the NVAR(2) polynomial model with degree 2 was selected. The forecasted curves for the VAR and NVAR models are shown in Figures 1-9. 
